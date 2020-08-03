@@ -1,0 +1,15 @@
+.team-country-flag {
+  max-width: 20px;
+}
+h2.tournament-title {
+  color: white;
+}
+h3.team-title {
+  color: white;
+}
+span.team-prop {
+  color: white;
+}
+.api-error-msg {
+  color: red;
+}
