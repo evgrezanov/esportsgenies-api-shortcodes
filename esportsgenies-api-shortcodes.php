@@ -7,7 +7,7 @@ Plugin Name: eSportsgenies API shortcodes
 Description: API integration for api.esport-api.com for eSportsgenies.com
 Author: Evgeniy Rezanov
 Plugin URI: https://github.com/evgrezanov/esportsgenies-api-shortcodes
-Version: 1.2
+Version: 1.2.1
 */
 
 //https://docs.google.com/document/d/1YSJbdzgZkqUeakxwKoujnoinwDf5pw3dN5AZXfywywA/edit
@@ -25,7 +25,6 @@ class esportsApiShortcodes {
     public static function print_styles(){
         $style = plugins_url('esportsgenies-api-shortcodes/asset/style.css');
         wp_enqueue_style( 'esports-style', $style );
-        // bootstrap
         $bootstrap = plugins_url('esportsgenies-api-shortcodes/inc/bootstrap/css/bootstrap.min.css');
         wp_enqueue_style( 'bootstrap', $bootstrap );
     }

@@ -23,15 +23,20 @@ span.team-prop {
 .match-item {
   border: solid 0.5px;
   border-color: grey;
+  padding: 10px 10px 10px 10px;
 }
+
 .esport-kf-bet {
   color: #32c532;
+  font-size: 16px;
+  font-weight: bold;
 }
 .match-date-time {
   color: whitesmoke;
 }
 
-.col-sm-2.team-odds {
+.col-sm-3.team-odds {
+  padding-top: 15px;
   text-align: center;
   width: 60px;
   height: 60px;
@@ -39,7 +44,20 @@ span.team-prop {
   border-radius: 4px;
   -webkit-box-flex: 0;
   flex: 0 0 60px;
-  color: #636e84;
-  height: 68px;
-  position: relative;
+}
+
+span.team-prop.esport-kf-bet.green {
+  color: green;
+}
+
+.team1 {
+  text-align: right;
+}
+
+.team2 {
+  text-align: left;
+}
+
+img.team-logo.no-have {
+  max-width: 60px !important;
 }

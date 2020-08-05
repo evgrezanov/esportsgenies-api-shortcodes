@@ -3,7 +3,9 @@
 defined('ABSPATH') || exit;
 
 class UpcomingMatches {
-    public static $status = 'upcoming';
+    public static $leagues = [];
+
+    public static $streamers = [];
      
     public static function init (){
         add_shortcode( 'upcoming-matches', [__CLASS__, 'render_shortcode'] );
@@ -38,13 +40,20 @@ class UpcomingMatches {
 
             $matches = json_decode( $body );
 
-            if( ! empty( $matches ) ) :
+            if( ! empty($matches) ) :
                 $logo = get_term_meta( get_queried_object()->term_id, 'logo', true );
                 $logo_game = wp_get_attachment_image_url( $logo, 'full' );
-                $nologo = plugins_url('esportsgenies-api-shortcodes/inc/no_logo.jpg');
+                $nologo = plugins_url('esportsgenies-api-shortcodes/inc/teamnoavatar.png');
                 ob_start(); ?>
 <div class="upcoming-matches-by-game">
     <?php foreach( $matches as $match ) { ?>
+    <?php 
+    if ( !empty($betOpponent1 = $match->betOpponent1) && !empty($betOpponent2 = $match->betOpponent2) ): 
+        $betOpponent1Class = '';
+        $betOpponent2Class = '';
+        if ($betOpponent1 > $betOpponent2): $betOpponent2Class = 'green'; endif;
+        if ($betOpponent1 < $betOpponent2): $betOpponent1Class = 'green'; endif;
+    ?>
     <div id="matchid-<?=$match->matchid?>" class="match-item row">
         <!--match league info-->
         <div class="esport-league-watch-live col-sm-4">
@@ -72,28 +81,29 @@ class UpcomingMatches {
                 <div class="esport-match-opponent-1 col-sm-5">
                     <div class="row float-sm-right">
                         <!--name-->
-                        <div class="col-sm-6 team-name">
-                            <span class="team-name"><?=$match->nameOpponent1?></span>
-                            <?php if ( !empty($match->opponentFlag1) ): ?>
-                            <img class="team-country-flag"
-                                src="<?=plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag1).'.png')?>" />
-                            <?php endif; ?>
+                        <div class="col-sm-6 team1 team-name">
+                            <span class="team-name">
+                                <?=$match->nameOpponent1?>
+                                <?php if ( !empty($match->opponentFlag1) ): ?>
+                                <img class="team-country-flag"
+                                    src="<?=plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag1).'.png')?>" />
+                                <?php endif; ?>
+                            </span>
                         </div>
                         <!--logo-->
-                        <div class="col-sm-3 team-logo">
+                        <div class="col-sm-3 team1 team-logo">
                             <?php if ( !empty($match->opponent1Logo) ): ?>
-                            <img width="50" height="50" class="team-logo" src="<?= $match->opponent1Logo ?>" />
+                            <img width="100" height="100" class="team-logo api" src="<?= $match->opponent1Logo ?>" />
                             <?php else:  ?>
-                            <img width="50" height="50" class="team-logo" src="<?= $nologo?>" />
+                            <img width="50" height="50" class="team-logo no-have" src="<?= $nologo?>" />
                             <?php endif; ?>
                         </div>
                         <!--odds-->
-                        <div class="col-sm-3 team-odds">
+                        <div class="col-sm-3 team1 team-odds">
                             <span title="<?=$match->winProbabilityOpponent1?>"
-                                class="team-prop esport-kf-bet"><?=$match->betOpponent1?></span>
+                                class="team-prop esport-kf-bet <?=$betOpponent1Class?>"><?=$match->betOpponent1?></span>
                         </div>
                     </div>
-
                 </div>
                 <!--delimeter-->
                 <div class="esport-match-icon col-sm-2">
@@ -104,31 +114,32 @@ class UpcomingMatches {
                 <!--team2 info-->
                 <div class="esport-match-opponent-2 col-sm-5">
                     <div class="row float-sm-left">
-                        <div class="col-sm-3 team-odds">
+                        <div class="col-sm-3 team2 team-odds">
                             <span title="<?=$match->winProbabilityOpponent2?>"
-                                class="team-prop esport-kf-bet"><?=$match->betOpponent2?></span>
+                                class="team-prop esport-kf-bet <?=$betOpponent2Class?>"><?=$match->betOpponent2?></span>
                         </div>
-                        <div class="col-sm-3 team-logo">
+                        <div class="col-sm-3 team2 team-logo">
                             <?php if ( !empty($match->opponent2Logo) ): ?>
-                            <img width="50" height="50" class="team-logo" scr="<?= $match->opponent2Logo?>">
+                            <img width="100" height="100" class="team-logo api" src="<?= $match->opponent2Logo?>">
                             <?php else: ?>
-                            <img class="team-no-logo"
-                                src="<?= plugins_url('esportsgenies-api-shortcodes/inc/nologo.png')?>" />
+                            <img class="team-no-logo no-have" src="<?= $nologo?>" />
                             <?php endif; ?>
                         </div>
-                        <div class="col-sm-6 team-name">
-                            <span class="team-name"><?=$match->nameOpponent2?></span>
-                            <?php if ( !empty($match->opponentFlag2) ): ?>
-                            <img class="team-country-flag"
-                                src="<?= plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag2).'.png')?>" />
-                            <?php endif; ?>
+                        <div class="col-sm-6 team2 team-name">
+                            <span class="team-name">
+                                <?=$match->nameOpponent2?>
+                                <?php if ( !empty($match->opponentFlag2) ): ?>
+                                <img class="team-country-flag"
+                                    src="<?= plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag2).'.png')?>" />
+                                <?php endif; ?>
+                            </span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <?php } ?>
 </div>
 
