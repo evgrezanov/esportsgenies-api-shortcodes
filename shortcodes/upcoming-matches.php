@@ -90,16 +90,8 @@ class UpcomingMatches {
                                 <?php endif; ?>
                             </span>
                         </div>
-                        <!--logo-->
-                        <div class="col-sm-3 team1 team-logo">
-                            <?php if ( !empty($match->opponent1Logo) ): ?>
-                            <img width="100" height="100" class="team-logo api" src="<?= $match->opponent1Logo ?>" />
-                            <?php else:  ?>
-                            <img width="50" height="50" class="team-logo no-have" src="<?= $nologo?>" />
-                            <?php endif; ?>
-                        </div>
                         <!--odds-->
-                        <div class="col-sm-3 team1 team-odds">
+                        <div class="col-sm-4 team1 team-odds">
                             <span title="<?=$match->winProbabilityOpponent1?>"
                                 class="team-prop esport-kf-bet <?=$betOpponent1Class?>"><?=$match->betOpponent1?></span>
                         </div>
@@ -114,16 +106,9 @@ class UpcomingMatches {
                 <!--team2 info-->
                 <div class="esport-match-opponent-2 col-sm-5">
                     <div class="row float-sm-left">
-                        <div class="col-sm-3 team2 team-odds">
+                        <div class="col-sm-4 team2 team-odds">
                             <span title="<?=$match->winProbabilityOpponent2?>"
                                 class="team-prop esport-kf-bet <?=$betOpponent2Class?>"><?=$match->betOpponent2?></span>
-                        </div>
-                        <div class="col-sm-3 team2 team-logo">
-                            <?php if ( !empty($match->opponent2Logo) ): ?>
-                            <img width="100" height="100" class="team-logo api" src="<?= $match->opponent2Logo?>">
-                            <?php else: ?>
-                            <img class="team-no-logo no-have" src="<?= $nologo?>" />
-                            <?php endif; ?>
                         </div>
                         <div class="col-sm-6 team2 team-name">
                             <span class="team-name">

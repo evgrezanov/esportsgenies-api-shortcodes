@@ -7,7 +7,7 @@ Plugin Name: eSportsgenies API shortcodes
 Description: API integration for api.esport-api.com for eSportsgenies.com
 Author: Evgeniy Rezanov
 Plugin URI: https://github.com/evgrezanov/esportsgenies-api-shortcodes
-Version: 1.2.1
+Version: 1.2.2
 */
 
 //https://docs.google.com/document/d/1YSJbdzgZkqUeakxwKoujnoinwDf5pw3dN5AZXfywywA/edit
@@ -20,6 +20,10 @@ class esportsApiShortcodes {
         require_once('inc/options.php');
         //UPCOMING MATCHES by game
         require_once('shortcodes/upcoming-matches.php');
+        //UPCOMING EVENTS
+        require_once('shortcodes/upcoming-events.php');
+        //STREAMERS by game
+        require_once('shortcodes/streamers-by-game.php');
     }
 
     public static function print_styles(){

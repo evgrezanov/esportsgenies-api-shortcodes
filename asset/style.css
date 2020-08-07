@@ -35,7 +35,7 @@ span.team-prop {
   color: whitesmoke;
 }
 
-.col-sm-3.team-odds {
+.team-odds {
   padding-top: 15px;
   text-align: center;
   width: 60px;
@@ -60,4 +60,22 @@ span.team-prop.esport-kf-bet.green {
 
 img.team-logo.no-have {
   max-width: 60px !important;
+}
+
+img._mi._before._image {
+  max-width: 28px;
+}
+img.jet-menu-icon {
+  width: 28px;
+}
+.jet-unfold__trigger {
+  margin-top: 2px !important;
+}
+.jet-listing-not-found.jet-listing-grid__items {
+  color: whitesmoke;
+}
+
+h3.streamers-list-title,
+ul.events-list {
+  color: whitesmoke;
 }
