@@ -75,7 +75,14 @@ img.jet-menu-icon {
   color: whitesmoke;
 }
 
-h3.streamers-list-title,
 ul.events-list {
   color: whitesmoke;
+}
+
+h3.streamers-list-title {
+  color: whitesmoke;
+}
+
+ul.streamers-list {
+  column-count: 3;
 }
