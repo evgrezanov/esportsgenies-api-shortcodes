@@ -40,15 +40,22 @@ class NextMatch {
                 if ($esport = get_term_by('slug', $next_match->game, 'esport')):
                     $esport_logo = get_term_meta( $esport->term_id, 'logo', true );
                     $logo_attributes = wp_get_attachment_image_src( $esport_logo, array(25,25) );
+                    if (empty($esport->description)):
+                        $esport_title = $esport->name;
+                    else:
+                        $esport_title = $esport->description;
+                    endif;
                     ob_start(); ?>
 <div class="card next-game" style="width: 18rem;">
-    <div class="card-body">
-        <img src="<?=$image_attributes[0]?>" width="<?=$image_attributes[1]?>" height="<?=$image_attributes[2]?>">
-        <h5 class="card-title">NEXT MATCH <a href="<?=get_post_meta($post->ID,'url',true)?>" BET NOW</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><?=$next_match->game?></h6>
-        <p class="card-text">
-            <?=$next_match->nameOpponent1?>VS<?=$next_match->nameOpponent2?>
-        </p>
+    <div class="card-body next-match">
+        <img src="<?=$logo_attributes[0]?>" width="<?=$logo_attributes[1]?>" height="<?=$logo_attributes[2]?>">
+        <h5 class="card-title">NEXT MATCH <a href="<?=get_post_meta($post->ID,'url',true)?>"> BET NOW </a></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><?=$esport_title?></h6>
+        <div class="card-text">
+            <span class="team1"><?=$next_match->nameOpponent1?></span>
+            <span class="matsh-with">VS</span>
+            <span class="team2"><?=$next_match->nameOpponent2?></span>
+        </div>
     </div>
 </div>
 <?php  
