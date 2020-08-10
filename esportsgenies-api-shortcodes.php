@@ -24,6 +24,10 @@ class esportsApiShortcodes {
         require_once('shortcodes/upcoming-events.php');
         //STREAMERS by game
         require_once('shortcodes/streamers-by-game.php');
+        //Next match
+        require_once('shortcodes/next-match.php');
+        //help
+        require_once('shortcodes/helpers.php');
     }
 
     public static function print_styles(){
