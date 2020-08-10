@@ -3,25 +3,29 @@
 defined('ABSPATH') || exit;
 
 class NextMatch {
-     
+    // api support this games
+    public static $egames = 'csgo|lol|dota|sc2|ow|hs|pubg|hots';
+
     public static function init (){
         add_shortcode( 'next-match', [__CLASS__, 'next_match'] );
     }
 
 
     public static function next_match(){
-        if ( is_single('bookmakers') ):
+        if ( is_singular('bookmakers') ):
             global $post;
             //https://api.esport-api.com/?token={{TOKEN}}&status=live
-            $game = get_queried_object()->slug;
+            //$game = get_queried_object()->slug;
             $esportsgenies_options_options = get_option( 'esportsgenies_options_option_name' );
             $url = $esportsgenies_options_options['api_url_0'];
             $token = $esportsgenies_options_options['token_1'];
             if (!empty($token)) {         
                 $url .= '?token=' . $token;
             }
-
             $url .= '&status=live';
+            $url .= '&games='.self::$egames;
+
+            $request = wp_remote_get($url);
 
             if( is_wp_error( $request ) ) :
                 return false; // Bail early
@@ -33,9 +37,13 @@ class NextMatch {
 
             if( !empty($matches) ) :
                 $next_match = $matches[0];
+                if ($esport = get_term_by('slug', $next_match->game, 'esport')):
+                    $esport_logo = get_term_meta( $esport->term_id, 'logo', true );
+                    $logo_attributes = wp_get_attachment_image_src( $esport_logo, array(25,25) );
                     ob_start(); ?>
 <div class="card next-game" style="width: 18rem;">
     <div class="card-body">
+        <img src="<?=$image_attributes[0]?>" width="<?=$image_attributes[1]?>" height="<?=$image_attributes[2]?>">
         <h5 class="card-title">NEXT MATCH <a href="<?=get_post_meta($post->ID,'url',true)?>" BET NOW</a></h5>
         <h6 class="card-subtitle mb-2 text-muted"><?=$next_match->game?></h6>
         <p class="card-text">
@@ -45,7 +53,7 @@ class NextMatch {
 </div>
 <?php  
                     return ob_get_clean();
-                     
+                endif;     
             endif; 
         endif;
     }
