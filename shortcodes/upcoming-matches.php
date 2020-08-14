@@ -75,7 +75,7 @@ class UpcomingMatches {
             </div>
         </div>
         <!--match team info-->
-        <div class="teams-match-info col-sm-8">
+        <div class="teams-match-info col-sm-6">
             <div class="row">
                 <!--team1 info-->
                 <div class="esport-match-opponent-1 col-sm-5">
@@ -122,6 +122,12 @@ class UpcomingMatches {
                     </div>
                 </div>
             </div>
+        </div>
+        <!--all offers-->
+        <div class="all-offers-link col-sm-2">
+            <span class="all-offers-link">
+                <a id="matchid-<?=$match->matchid?>" href="#">All offers</a>
+            </span>
         </div>
     </div>
     <?php endif; ?>
