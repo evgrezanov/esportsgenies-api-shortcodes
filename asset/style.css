@@ -86,3 +86,44 @@ h3.streamers-list-title {
 ul.streamers-list {
   column-count: 3;
 }
+
+/*---------------------------------------------*/
+.go-to-partner {
+  text-align: center;
+}
+.elementor-element.elementor-element-9f7562a.elementor-column.elementor-col-100.elementor-top-column {
+  height: 169px;
+}
+@media (max-width: 767px) {
+  .elementor-element.elementor-element-9f7562a.elementor-column.elementor-col-100.elementor-top-column {
+    height: 252px;
+  }
+  .book-bonus-title-home {
+    margin-left: 50px;
+  }
+}
+.elementor-shortcode {
+  color: white;
+}
+.elementor-button.elementor-size-xs {
+  font-size: 13px;
+  padding: 10px 20px;
+  -webkit-border-radius: 26px;
+  border-radius: 26px;
+}
+.book-bonus-rating-home {
+  display: inline;
+  border: 4px solid red;
+  border-radius: 50%;
+  padding: 8px;
+  margin-left: 9px;
+}
+.book-bonus-title-home {
+  color: #666;
+}
+.elementor-1726
+  .elementor-element.elementor-element-9f7562a:not(.elementor-motion-effects-element-type-background)
+  > .elementor-column-wrap {
+  background: linear-gradient(135deg, #1c1e25 0%, #121419 100%);
+  border: 1px solid #23a455;
+}

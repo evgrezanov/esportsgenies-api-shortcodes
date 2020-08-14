@@ -11,8 +11,8 @@ class eSportHelpers {
 
     public static function display_rating($atts){
         $bookmaker_id = $atts['bookmaker'];
-        $title = get_the_title($bookmaker_id);
-        $rating = get_post_meta($bookmaker_id, 'rating', true);
+        $title = '<div class="book-bonus-title-home">'.get_the_title($bookmaker_id).'</div>';
+        $rating = '<div class="book-bonus-rating-home">'.get_post_meta($bookmaker_id, 'rating', true).'</div>';
         return $title.$rating;
     }
 

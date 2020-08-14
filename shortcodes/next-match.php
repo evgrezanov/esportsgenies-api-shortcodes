@@ -15,7 +15,7 @@ class NextMatch {
 
     public static function get_next_matches_data(){
         $next_matches = array();
-        //https://api.esport-api.com/?token={{TOKEN}}&status=live
+        //https://api.esport-api.com/?token={{TOKEN}}&status=live&games=|||
         $esportsgenies_options_options = get_option( 'esportsgenies_options_option_name' );
         $url = $esportsgenies_options_options['api_url_0'];
         $token = $esportsgenies_options_options['token_1'];
@@ -25,8 +25,9 @@ class NextMatch {
         }
 
         $url .= '&status=live';
-
-        foreach (self::$games as $game):
+        $mygames = self::$games;
+        $i = 0;
+        foreach ($mygames as $game):
 
             $newurl = $url.'&games='.$game;
 
@@ -40,7 +41,8 @@ class NextMatch {
 
             $matches = json_decode( $body );
             if( !empty($matches) ):
-                $next_matches[]=$matches[0];
+                $next_matches[$i]=$matches[0];
+                $i++;
             endif;
 
         endforeach;

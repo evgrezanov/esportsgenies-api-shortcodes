@@ -81,19 +81,21 @@ class UpcomingMatches {
                 <div class="esport-match-opponent-1 col-sm-5">
                     <div class="row float-sm-right">
                         <!--name-->
-                        <div class="col-sm-6 team1 team-name">
-                            <span class="team-name">
+                        <div class="col-sm-6">
+                            <div class="team1 team-name">
                                 <?=$match->nameOpponent1?>
                                 <?php if ( !empty($match->opponentFlag1) ): ?>
                                 <img class="team-country-flag"
                                     src="<?=plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag1).'.png')?>" />
                                 <?php endif; ?>
-                            </span>
+                            </div>
                         </div>
                         <!--odds-->
-                        <div class="col-sm-4 team1 team-odds">
-                            <span title="<?=$match->winProbabilityOpponent1?>"
-                                class="team-prop esport-kf-bet <?=$betOpponent1Class?>"><?=$match->betOpponent1?></span>
+                        <div class="col-sm-6">
+                            <div class="team1 team-odds" title="<?=$match->winProbabilityOpponent1?>"
+                                class="team-prop esport-kf-bet <?=$betOpponent1Class?>">
+                                <?=$match->betOpponent1?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,18 +108,21 @@ class UpcomingMatches {
                 <!--team2 info-->
                 <div class="esport-match-opponent-2 col-sm-5">
                     <div class="row float-sm-left">
-                        <div class="col-sm-4 team2 team-odds">
-                            <span title="<?=$match->winProbabilityOpponent2?>"
-                                class="team-prop esport-kf-bet <?=$betOpponent2Class?>"><?=$match->betOpponent2?></span>
+                        <!--odds-->
+                        <div class="col-sm-6">
+                            <div class="team2 team-odds" title="<?=$match->winProbabilityOpponent2?>"
+                                class="team-prop esport-kf-bet <?=$betOpponent2Class?>">
+                                <?=$match->betOpponent2?>
+                            </div>
                         </div>
-                        <div class="col-sm-6 team2 team-name">
-                            <span class="team-name">
+                        <div class="col-sm-6">
+                            <div class="team2 team-name">
                                 <?=$match->nameOpponent2?>
                                 <?php if ( !empty($match->opponentFlag2) ): ?>
                                 <img class="team-country-flag"
                                     src="<?= plugins_url('esportsgenies-api-shortcodes/inc/famfamfam_flag_icons/png/'.mb_strtolower($match->opponentFlag2).'.png')?>" />
                                 <?php endif; ?>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,12 +130,13 @@ class UpcomingMatches {
         </div>
         <!--all offers-->
         <div class="all-offers-link col-sm-2">
-            <span class="all-offers-link">
+            <div class="all-offers-link">
                 <a id="matchid-<?=$match->matchid?>" href="#">All offers</a>
-            </span>
+            </div>
         </div>
     </div>
-    <?php endif; ?>
+    <?php 
+    endif; ?>
     <?php } ?>
 </div>
 
