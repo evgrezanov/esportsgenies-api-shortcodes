@@ -18,6 +18,8 @@ class esportsApiShortcodes {
         add_action('wp_enqueue_scripts', [__CLASS__, 'print_styles']);
         //options page
         require_once('inc/options.php');
+        //slide panel
+        require_once('inc/betting-panel.php');
         //UPCOMING MATCHES by game
         require_once('shortcodes/upcoming-matches.php');
         //UPCOMING EVENTS

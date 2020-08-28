@@ -53,13 +53,20 @@ class Streamers {
     <?php if ( !empty($streamers) ): ?>
     <h3 class="streamers-list-title">Streamers</h3>
     <ul class="streamers-list">
-        <?php foreach ($streamers as $streamer): ?>
+        <?php 
+        foreach ($streamers as $streamer): 
+            $name = self::get_streamer_name($streamer);
+            if (!empty($name)):
+        ?>
         <li class="streamer-title">
             <a href="<?=$streamer?>" targer="_blank" rel="nofollow"><?=self::get_streamer_name($streamer)?></a>
         </li>
-        <?php endforeach;?>
+        <?php 
+        endif;
+        endforeach;
+    ?>
     </ul>
-    <?php endif; ?>?
+    <?php endif; ?>
 </div>
 <?php  
                     return ob_get_clean();

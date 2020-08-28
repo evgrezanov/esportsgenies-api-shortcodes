@@ -55,6 +55,7 @@ class UpcomingMatches {
         if ($betOpponent1 < $betOpponent2): $betOpponent1Class = 'green'; endif;
     ?>
     <div id="matchid-<?=$match->matchid?>" class="match-item row">
+        <nav style="display:none;" id="betting-menu"></nav>
         <!--match league info-->
         <div class="esport-league-watch-live col-sm-4">
             <div class="esport-league row">
@@ -131,7 +132,7 @@ class UpcomingMatches {
         <!--all offers-->
         <div class="all-offers-link col-sm-2">
             <div class="all-offers-link">
-                <a id="matchid-<?=$match->matchid?>" href="#">All offers</a>
+                <a id="matchid-<?=$match->matchid?> class=" js-slideout-toggle" href="#">All offers</a>
             </div>
         </div>
     </div>
