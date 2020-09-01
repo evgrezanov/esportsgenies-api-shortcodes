@@ -12,9 +12,10 @@ class UpcomingMatches {
     }
 
     public static function render_shortcode(){
-        if ( is_tax('esport') ):
+        //if ( is_tax('esport') ):
             //http://api.esport-api.com/?token={{TOKEN}}&status={{STATUS}}&game={{ESPORT}}
             $game = get_queried_object()->slug;
+            $game = 'lol';
             $esportsgenies_options_options = get_option( 'esportsgenies_options_option_name' );
             $url = $esportsgenies_options_options['api_url_0'];
             $token = $esportsgenies_options_options['token_1'];
@@ -48,12 +49,12 @@ class UpcomingMatches {
 <div class="upcoming-matches-by-game">
     <?php foreach( $matches as $match ) { ?>
     <?php 
-    if ( !empty($betOpponent1 = $match->betOpponent1) && !empty($betOpponent2 = $match->betOpponent2) ): 
-        $betOpponent1Class = '';
-        $betOpponent2Class = '';
-        if ($betOpponent1 > $betOpponent2): $betOpponent2Class = 'green'; endif;
-        if ($betOpponent1 < $betOpponent2): $betOpponent1Class = 'green'; endif;
-    ?>
+                        if ( !empty($betOpponent1 = $match->betOpponent1) && !empty($betOpponent2 = $match->betOpponent2) ): 
+                            $betOpponent1Class = '';
+                            $betOpponent2Class = '';
+                            if ($betOpponent1 > $betOpponent2): $betOpponent2Class = 'green'; endif;
+                            if ($betOpponent1 < $betOpponent2): $betOpponent1Class = 'green'; endif;
+                        ?>
     <div id="matchid-<?=$match->matchid?>" class="match-item row">
         <nav style="display:none;" id="betting-menu"></nav>
         <!--match league info-->
@@ -137,7 +138,7 @@ class UpcomingMatches {
         </div>
     </div>
     <?php 
-    endif; ?>
+                        endif; ?>
     <?php } ?>
 </div>
 
@@ -145,10 +146,10 @@ class UpcomingMatches {
             else:
                 ?> <h3 class="api-error-msg">No have upcoming matches</h3> <?php
             endif;
-        else: ?>
-<h3 class="api-error-msg">Use this shortcode at esport archive page, esport page slug should = game in API.</h3>
+        //else: ?>
+<!--<h3 class="api-error-msg">Use this shortcode at esport archive page, esport page slug should = game in API.</h3>-->
 <?php     
-        endif;            
+        //endif;            
         return ob_get_clean();
 
     }

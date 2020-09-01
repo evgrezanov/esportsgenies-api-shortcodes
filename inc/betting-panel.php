@@ -10,10 +10,10 @@ class eSportPanel {
     }
     
     public static function panel_asset(){
-        $slideout_style  = plugins_url('inc/slideout/slideout.css');
+        $slideout_style  = plugins_url('esportsgenies-api-shortcodes/inc/slideout/slideout.css');
         wp_enqueue_style( 'slideout-style', $slideout_style );
         
-        $slideout_script_min = plugins_url('inc/slideout/slideout.min.js');
+        $slideout_script_min = plugins_url('esportsgenies-api-shortcodes/inc/slideout/slideout.min.js');
         wp_enqueue_script(
             'slideout-min-script',
             $slideout_script_min,
@@ -21,15 +21,15 @@ class eSportPanel {
             '321',
             false
         );
-
-        $slideout_script = plugins_url('inc/slideout/slideout-init.js');
+        /*
+        $slideout_script = plugins_url('esportsgenies-api-shortcodes/inc/slideout/slideout-init.js');
         wp_enqueue_script(
             'slideout-init',
             $slideout_script,
             ['slideout-min-script'],
             '123',
             false
-        );
+        );*/
     }
 
     public static function display_panel(){
